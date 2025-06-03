@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BatFit Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <header>
+        <img src="assets/images/batman-logo.jpg" alt="BatFit Logo" id="logo"> <!-- Ensure you have this logo or change path/name -->
+        <h1>BatFit Tracker</h1>
+    </header>
+
+    <main>
+        <section id="workout-logger">
+            <h2>Log New Workout</h2>
+            <form id="log-workout-form">
+               <div>
+                    <label for="workout-date">Date:</label>
+                    <input type="date" id="workout-date" required>
+                </div>
+                <div>
+                    <label for="exercise-name">Exercise Name:</label>
+                    <input type="text" id="exercise-name" placeholder="e.g., Bat-Bench Press" required>
+                </div>
+
+                <!-- Input for Number of Sets -->
+                <div>
+                    <label for="num-of-sets">Number of Sets:</label>
+                    <input type="number" id="num-of-sets" min="1" required>
+                </div>
+
+                <!-- Container for Dynamic Set Inputs (Reps and Weight per set) -->
+                <div id="sets-container">
+                    <!-- Set inputs will be generated here by JS -->
+                </div>
+
+                <button type="submit" class="bat-button">Log Workout</button>
+            </form>
+        </section>
+
+        <section id="dashboard">
+            <h2>Dashboard</h2>
+
+            <div id="calendar-view">
+                <h3>Workout Calendar</h3>
+                <div class="calendar-controls">
+                    <button id="prev-month"><</button>
+                    <span id="current-month-year">Month Year</span>
+                    <button id="next-month">></button>
+                </div>
+                <div id="calendar-grid">
+                    <!-- Calendar days will be generated here by JS -->
+                </div>
+                <div id="selected-date-workouts">
+                    <h4>Workouts for <span id="display-selected-date"></span>:</h4>
+                    <ul id="workouts-for-date-list"></ul>
+                </div>
+            </div>
+
+            <div id="weekly-summary">
+                <h3>This Week's Summary</h3>
+                <p>Total Workouts: <span id="summary-total-workouts">0</span></p>
+                <p>Total Sets: <span id="summary-total-sets">0</span></p>
+                {/* More summary stats */}
+            </div>
+
+            <div id="progression-charts">
+                <h3>Progression</h3>
+                <select id="exercise-select-for-chart">
+                    <option value="">-- Select Exercise --</option>
+                </select>
+                <canvas id="weight-progression-chart"></canvas>
+                <canvas id="reps-progression-chart"></canvas>
+            </div>
+
+            <div id="comparison">
+                <h3>Weekly Comparison</h3>
+                <p>Current Week vs. Last Week (e.g., Volume): <span id="comparison-data">N/A</span></p>
+            </div>
+
+            <div id="personal-records">
+                <h3>Personal Records (PRs)</h3>
+                <ul id="pr-list">
+                    {/* PRs will be listed here */}
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Stay Strong, Dark Knight!</p>
+    </footer>
+
+    <!-- SCRIPTS - Order Matters -->
+    <script src="js/supabase-client.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/charts.js"></script>
+</body>
+</html>
